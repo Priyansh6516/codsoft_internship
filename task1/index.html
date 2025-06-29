@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priyansh Raghuvanshi | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: {
+                            blue: '#00f7ff',
+                            dark: '#0d0d2b',
+                            light: '#1a1a4a',
+                            accent: '#3d5af1',
+                        },
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'neon-glow': 'neon-glow 2s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        'neon-glow': {
+                            'from': { 'text-shadow': '0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6' },
+                            'to': { 'text-shadow': '0 0 10px #fff, 0 0 20px #fff, 0 0 30px #0073e6, 0 0 40px #0073e6' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0d0d2b;
+            color: white;
+            scroll-behavior: smooth;
+        }
+        
+        .oval-image {
+            width: 220px;
+            height: 220px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            object-fit: cover;
+            border: 3px solid #00f7ff;
+            box-shadow: 0 0 15px rgba(0, 247, 255, 0.5);
+        }
+        
+        .neon-border {
+            position: relative;
+        }
+        
+        .neon-border::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 8px;
+            background: linear-gradient(45deg, #00f7ff, #3d5af1, #00f7ff);
+            background-size: 200% 200%;
+            z-index: -1;
+            animation: gradient 4s ease infinite;
+            opacity: 0.7;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #00f7ff, transparent);
+            border-radius: 3px;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 247, 255, 0.3);
+        }
+        
+        .skill-badge {
+            transition: all 0.3s ease;
+        }
+        
+        .skill-badge:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(0, 247, 255, 0.7);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #00f7ff;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .active-nav::after {
+            width: 100%;
+        }
+        
+        .typewriter {
+            border-right: 3px solid #00f7ff;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #00f7ff; }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-neon-dark/90 backdrop-blur-sm z-50 shadow-lg shadow-neon-blue/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-neon-blue font-bold text-xl tracking-wider neon-glow">PR</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-8">
+                        <a href="#home" class="nav-link active-nav text-white px-3 py-2 text-sm font-medium">Home</a>
+                        <a href="#about" class="nav-link text-white px-3 py-2 text-sm font-medium">About</a>
+                        <a href="#skills" class="nav-link text-white px-3 py-2 text-sm font-medium">Skills</a>
+                        <a href="#projects" class="nav-link text-white px-3 py-2 text-sm font-medium">Projects</a>
+                        <a href="#contact" class="nav-link text-white px-3 py-2 text-sm font-medium">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button class="mobile-menu-button p-2 rounded-md text-neon-blue focus:outline-none">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="mobile-menu hidden md:hidden bg-neon-dark shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 text-base font-medium text-white">Home</a>
+                <a href="#about" class="block px-3 py-2 text-base font-medium text-white">About</a>
+                <a href="#skills" class="block px-3 py-2 text-base font-medium text-white">Skills</a>
+                <a href="#projects" class="block px-3 py-2 text-base font-medium text-white">Projects</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-medium text-white">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 pb-16 md:pt-32 md:pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto min-h-screen flex items-center">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="text-center md:text-left">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white">
+                    Hi, I'm <span class="text-neon-blue">Priyansh Raghuvanshi</span>
+                </h1>
+                <div class="typewriter text-xl md:text-2xl mb-6 font-mono text-neon-blue">
+                    <span id="typewriter-text"></span>
+                </div>
+                <p class="text-lg mb-8 text-gray-300 max-w-lg">
+                    A passionate developer creating innovative solutions with cutting-edge technologies. 
+                    I build digital experiences that make an impact.
+                </p>
+                <div class="flex flex-wrap justify-center md:justify-start gap-4">
+                    <a href="#projects" class="px-8 py-3 bg-neon-blue text-neon-dark font-semibold rounded-full hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-neon-blue/30">
+                        View Work
+                    </a>
+                    <a href="#contact" class="px-8 py-3 border-2 border-neon-blue text-neon-blue font-semibold rounded-full hover:bg-neon-blue hover:bg-opacity-10 transition-all duration-300 transform hover:scale-105">
+                        Contact Me
+                    </a>
+                </div>
+            </div>
+            <div class="flex justify-center md:justify-end">
+                <div class="relative">
+                    <img src="me.jpg" 
+                         alt="Priyansh Raghuvanshi" 
+                         class="oval-image float">
+                    <div class="absolute -bottom-5 -left-5 w-24 h-24 rounded-full bg-neon-blue/20 backdrop-blur-sm border border-neon-blue/30 animate-pulse-slow"></div>
+                    <div class="absolute -top-5 -right-5 w-16 h-16 rounded-full bg-neon-blue/20 backdrop-blur-sm border border-neon-blue/30 animate-pulse-slow animation-delay-1000"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto min-h-screen flex items-center">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="flex justify-center md:justify-start order-2 md:order-1">
+                <div class="relative">
+                    <img src="me.jpg" 
+                         alt="Priyansh Raghuvanshi" 
+                         class="oval-image float animation-delay-2000">
+                    <div class="absolute -inset-4 rounded-full border-2 border-neon-blue/30 animate-spin-slow pointer-events-none"></div>
+                </div>
+            </div>
+            <div class="order-1 md:order-2">
+                <h2 class="section-title text-3xl md:text-4xl font-bold mb-8 text-white">
+                    About <span class="text-neon-blue">Me</span>
+                </h2>
+                <p class="text-lg mb-6 text-gray-300">
+                    I'm Priyansh Raghuvanshi, a full-stack developer with a passion for creating beautiful, functional, 
+                    and user-centered digital experiences. With a strong foundation in computer science and years of 
+                    hands-on experience, I specialize in building responsive web applications that deliver real business value.
+                </p>
+                <p class="text-lg mb-6 text-gray-300">
+                    My journey in tech started when I was just 17 years old, tinkering with HTML and CSS to build my first website. 
+                    Since then, I've had the privilege of working with startups and established companies to bring their digital 
+                    visions to life.
+                </p>
+                <div class="grid grid-cols-2 gap-4 mt-8">
+                    <div class="neon-border p-4 rounded-lg bg-neon-light/30">
+                        <h3 class="font-semibold text-neon-blue mb-2">Education</h3>
+                        <p class="text-gray-300">B.Tech in Computer Science</p>
+                        <p class="text-sm text-gray-400">NIET, Greater Noida, 2024-2028 </p>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto min-h-screen flex items-center">
+        <div class="w-full">
+            <h2 class="section-title text-3xl md:text-4xl font-bold mb-12 text-center text-white">
+                My <span class="text-neon-blue">Skills</span>
+            </h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+                <div class="skill-badge neon-border p-6 rounded-lg bg-neon-light/20 flex flex-col items-center">
+                    <i class="fab fa-html5 text-4xl text-neon-blue mb-3"></i>
+                    <span class="font-medium">HTML5</span>
+                    <div class="w-full bg-neon-dark rounded-full h-2 mt-3">
+                        <div class="bg-neon-blue h-2 rounded-full" style="width: 95%"></div>
+                    </div>
+                </div>
+                <div class="skill-badge neon-border p-6 rounded-lg bg-neon-light/20 flex flex-col items-center">
+                    <i class="fab fa-css3-alt text-4xl text-neon-blue mb-3"></i>
+                    <span class="font-medium">CSS3</span>
+                    <div class="w-full bg-neon-dark rounded-full h-2 mt-3">
+                        <div class="bg-neon-blue h-2 rounded-full" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="skill-badge neon-border p-6 rounded-lg bg-neon-light/20 flex flex-col items-center">
+                    <i class="fab fa-js text-4xl text-neon-blue mb-3"></i>
+                    <span class="font-medium">JavaScript</span>
+                    <div class="w-full bg-neon-dark rounded-full h-2 mt-3">
+                        <div class="bg-neon-blue h-2 rounded-full" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-badge neon-border p-6 rounded-lg bg-neon-light/20 flex flex-col items-center">
+                    <i class="fab fa-react text-4xl text-neon-blue mb-3"></i>
+                    <span class="font-medium">React</span>
+                    <div class="w-full bg-neon-dark rounded-full h-2 mt-3">
+                        <div class="bg-neon-blue h-2 rounded-full" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div class="skill-badge neon-border p-6 rounded-lg bg-neon-light/20 flex flex-col items-center">
+                    <i class="fab fa-node-js text-4xl text-neon-blue mb-3"></i>
+                    <span class="font-medium">Node.js</span>
+                    <div class="w-full bg-neon-dark rounded-full h-2 mt-3">
+                        <div class="bg-neon-blue h-2 rounded-full" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div class="skill-badge neon-border p-6 rounded-lg bg-neon-light/20 flex flex-col items-center">
+                    <i class="fas fa-database text-4xl text-neon-blue mb-3"></i>
+                    <span class="font-medium">MongoDB</span>
+                    <div class="w-full bg-neon-dark rounded-full h-2 mt-3">
+                        <div class="bg-neon-blue h-2 rounded-full" style="width: 70%"></div>
+                    </div>
+                </div>
+                <div class="skill-badge neon-border p-6 rounded-lg bg-neon-light/20 flex flex-col items-center">
+                    <i class="fab fa-python text-4xl text-neon-blue mb-3"></i>
+                    <span class="font-medium">Python</span>
+                    <div class="w-full bg-neon-dark rounded-full h-2 mt-3">
+                        <div class="bg-neon-blue h-2 rounded-full" style="width: 65%"></div>
+                    </div>
+                </div>
+                <div class="skill-badge neon-border p-6 rounded-lg bg-neon-light/20 flex flex-col items-center">
+                    <i class="fab fa-git-alt text-4xl text-neon-blue mb-3"></i>
+                    <span class="font-medium">Git</span>
+                    <div class="w-full bg-neon-dark rounded-full h-2 mt-3">
+                        <div class="bg-neon-blue h-2 rounded-full" style="width: 85%"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="neon-border p-8 rounded-lg bg-neon-light/10">
+                <h3 class="text-xl font-semibold text-neon-blue mb-4">My Approach</h3>
+                <p class="text-gray-300 mb-4">
+                    I believe in continuous learning and staying updated with the latest technologies. My development 
+                    process focuses on clean code, performance optimization, and creating intuitive user interfaces.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 text-neon-blue mt-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div class="ml-3">
+                            <p class="text-gray-300">Responsive Design</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 text-neon-blue mt-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div class="ml-3">
+                            <p class="text-gray-300">Performance Optimization</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 text-neon-blue mt-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div class="ml-3">
+                            <p class="text-gray-300">Clean Code Practices</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto min-h-screen">
+        <h2 class="section-title text-3xl md:text-4xl font-bold mb-12 text-center text-white">
+            My <span class="text-neon-blue">Projects</span>
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Project 1 -->
+            <div class="project-card neon-border rounded-lg overflow-hidden bg-neon-light/10 transition-all duration-300">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="E-commerce Platform" 
+                         class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-neon-dark/80 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-4">
+                        <span class="inline-block px-3 py-1 text-xs font-semibold bg-neon-blue text-neon-dark rounded-full">React</span>
+                        <span class="inline-block px-3 py-1 text-xs font-semibold bg-neon-blue text-neon-dark rounded-full ml-2">Node.js</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-white mb-2">E-commerce Platform</h3>
+                    <p class="text-gray-300 mb-4">
+                        A full-featured e-commerce platform with product listings, cart functionality, and secure payment processing.
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <a href="#" class="text-neon-blue hover:underline flex items-center">
+                            View Project
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-neon-blue">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Project 2 -->
+            <div class="project-card neon-border rounded-lg overflow-hidden bg-neon-light/10 transition-all duration-300">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1555421689-3f034debb7a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Task Management App" 
+                         class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-neon-dark/80 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-4">
+                        <span class="inline-block px-3 py-1 text-xs font-semibold bg-neon-blue text-neon-dark rounded-full">Vue.js</span>
+                        <span class="inline-block px-3 py-1 text-xs font-semibold bg-neon-blue text-neon-dark rounded-full ml-2">Firebase</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-white mb-2">Task Management App</h3>
+                    <p class="text-gray-300 mb-4">
+                        A collaborative task management application with real-time updates, drag-and-drop functionality, and team features.
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <a href="#" class="text-neon-blue hover:underline flex items-center">
+                            View Project
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-neon-blue">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Project 3 -->
+            <div class="project-card neon-border rounded-lg overflow-hidden bg-neon-light/10 transition-all duration-300">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Health Tracker" 
+                         class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-neon-dark/80 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-4">
+                        <span class="inline-block px-3 py-1 text-xs font-semibold bg-neon-blue text-neon-dark rounded-full">React Native</span>
+                        <span class="inline-block px-3 py-1 text-xs font-semibold bg-neon-blue text-neon-dark rounded-full ml-2">GraphQL</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-white mb-2">Health & Fitness Tracker</h3>
+                    <p class="text-gray-300 mb-4">
+                        A mobile application for tracking workouts, nutrition, and health metrics with personalized recommendations.
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <a href="#" class="text-neon-blue hover:underline flex items-center">
+                            View Project
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-neon-blue">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Project 4 -->
+            <div class="project-card neon-border rounded-lg overflow-hidden bg-neon-light/10 transition-all duration-300">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" 
+                         alt="AI Content Generator" 
+                         class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-neon-dark/80 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-4">
+                        <span class="inline-block px-3 py-1 text-xs font-semibold bg-neon-blue text-neon-dark rounded-full">Python</span>
+                        <span class="inline-block px-3 py-1 text-xs font-semibold bg-neon-blue text-neon-dark rounded-full ml-2">TensorFlow</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-white mb-2">AI Content Generator</h3>
+                    <p class="text-gray-300 mb-4">
+                        A web application that uses machine learning to generate creative content based on user prompts and preferences.
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <a href="#" class="text-neon-blue hover:underline flex items-center">
+                            View Project
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-neon-blue">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Project 5 -->
+            <div class="project-card neon-border rounded-lg overflow-hidden bg-neon-light/10 transition-all duration-300">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Social Media Dashboard" 
+                         class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-neon-dark/80 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-4">
+                        <span class="inline-block px-3 py-1 text-xs font-semibold bg-neon-blue text-neon-dark rounded-full">Next.js</span>
+                        <span class="inline-block px-3 py-1 text-xs font-semibold bg-neon-blue text-neon-dark rounded-full ml-2">Tailwind CSS</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-white mb-2">Social Media Dashboard</h3>
+                    <p class="text-gray-300 mb-4">
+                        A comprehensive dashboard for managing multiple social media accounts with analytics and scheduling features.
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <a href="#" class="text-neon-blue hover:underline flex items-center">
+                            View Project
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-neon-blue">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Project 6 -->
+            <div class="project-card neon-border rounded-lg overflow-hidden bg-neon-light/10 transition-all duration-300">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Blockchain Explorer" 
+                         class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-neon-dark/80 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-4">
+                        <span class="inline-block px-3 py-1 text-xs font-semibold bg-neon-blue text-neon-dark rounded-full">Solidity</span>
+                        <span class="inline-block px-3 py-1 text-xs font-semibold bg-neon-blue text-neon-dark rounded-full ml-2">Web3.js</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-white mb-2">Blockchain Explorer</h3>
+                    <p class="text-gray-300 mb-4">
+                        A tool for exploring blockchain transactions, smart contracts, and network statistics with real-time updates.
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <a href="#" class="text-neon-blue hover:underline flex items-center">
+                            View Project
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-neon-blue">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-12">
+            <a href="#" class="inline-flex items-center px-6 py-3 border border-neon-blue text-neon-blue rounded-full hover:bg-neon-blue hover:bg-opacity-10 transition-all duration-300">
+                View All Projects
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto min-h-screen flex items-center">
+        <div class="w-full">
+            <h2 class="section-title text-3xl md:text-4xl font-bold mb-12 text-center text-white">
+                Get In <span class="text-neon-blue">Touch</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="neon-border p-8 rounded-lg bg-neon-light/10">
+                    <h3 class="text-2xl font-bold text-white mb-6">Contact Information</h3>
+                    <p class="text-gray-300 mb-8">
+                        Feel free to reach out to me for any questions or opportunities. I'm always open to discussing 
+                        new projects, creative ideas or opportunities to be part of your vision.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 text-neon-blue mt-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-medium text-white">Email</h4>
+                                <p class="text-gray-300">priyanshraghuvanshi246@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 text-neon-blue mt-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-medium text-white">Phone</h4>
+                                <p class="text-gray-300">+91 94550 74471</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 text-neon-blue mt-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-medium text-white">Location</h4>
+                                <p class="text-gray-300">New Delhi, India</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h4 class="text-lg font-medium text-white mb-4">Connect with me</h4>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/Priyansh6516/codsoft_internship" class="w-10 h-10 rounded-full bg-neon-light/20 flex items-center justify-center text-neon-blue hover:bg-neon-blue hover:text-neon-dark transition-all duration-300">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/priyansh-raghuvanshi-8070002a9/" class="w-10 h-10 rounded-full bg-neon-light/20 flex items-center justify-center text-neon-blue hover:bg-neon-blue hover:text-neon-dark transition-all duration-300">
+                                <i class="fab fa-linkedin-in text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="neon-border p-8 rounded-lg bg-neon-light/10">
+                    <h3 class="text-2xl font-bold text-white mb-6">Send Me a Message</h3>
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Your Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 bg-neon-dark border border-neon-light/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-neon-blue text-white placeholder-gray-500 transition-all duration-300" placeholder="Enter your name">
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Your Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 bg-neon-dark border border-neon-light/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-neon-blue text-white placeholder-gray-500 transition-all duration-300" placeholder="Enter your email">
+                        </div>
+                        
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-300 mb-1">Subject</label>
+                            <input type="text" id="subject" class="w-full px-4 py-3 bg-neon-dark border border-neon-light/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-neon-blue text-white placeholder-gray-500 transition-all duration-300" placeholder="Enter subject">
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-300 mb-1">Your Message</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-3 bg-neon-dark border border-neon-light/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-neon-blue text-white placeholder-gray-500 transition-all duration-300" placeholder="Enter your message"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full px-6 py-3 bg-neon-blue text-neon-dark font-semibold rounded-lg hover:bg-opacity-90 transition-all duration-300 transform hover:scale-[1.02] shadow-lg shadow-neon-blue/30">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-neon-dark/50 py-8 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <span class="text-neon-blue font-bold text-xl tracking-wider mr-2">PR</span>
+                    <span class="text-white">Priyansh Raghuvanshi</span>
+                </div>
+                <div class="text-gray-400 text-sm">
+                    © <span id="year"></span> All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector('.mobile-menu-button');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // Typewriter effect
+        const typewriterText = document.getElementById('typewriter-text');
+        const texts = ["Full Stack Developer", "UI/UX Designer", "Tech Enthusiast", "Problem Solver"];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        
+        function typeWriter() {
+            const currentText = texts[textIndex];
+            
+            if (isDeleting) {
+                typewriterText.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typewriterText.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+            
+            if (!isDeleting && charIndex === currentText.length) {
+                isDeleting = true;
+                setTimeout(typeWriter, 1000);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+                setTimeout(typeWriter, 500);
+            } else {
+                const speed = isDeleting ? 50 : 100;
+                setTimeout(typeWriter, speed);
+            }
+        }
+        
+        // Start the typewriter effect
+        setTimeout(typeWriter, 1000);
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update active navigation
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active-nav');
+                    });
+                    this.classList.add('active-nav');
+                }
+            });
+        });
+        
+        // Highlight active navigation based on scroll position
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY;
+            
+            document.querySelectorAll('section').forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active-nav');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active-nav');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
